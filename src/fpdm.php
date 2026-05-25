@@ -90,6 +90,8 @@ if (!call_user_func_array('class_exists', $__tmp)) {
 		var $shifts = array();    	  //array, Shifts of objects in the order positions they appear in the pdf, starting at 0.
 		var $shift = 0;     	  //integer, Global shift file size due to object values size changes
 		
+		var $n = 0;
+
 		var $streams = '';         //Holds streams configuration found during parsing
 		var $streams_filter = '';  //Regexp to decode filter streams
 		
@@ -817,7 +819,7 @@ if (!call_user_func_array('class_exists', $__tmp)) {
 			return $Shift;
 		}
 
-		function _encode_value($str) {
+		function _encode_value($str = '') {
 			if($this->isUTF8)
 				$str="\xFE\xFF".iconv('UTF-8','UTF-16BE',$str);
 			return $this->_bin2hex($str);
